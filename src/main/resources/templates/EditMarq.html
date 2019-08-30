@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="layout">
+<head>
+<meta charset="utf-8">
+<title>saisie d'une marque</title>
+
+</head>
+<body>
+	<div >
+	<div class="col-md-4">
+	</div>
+	<div class="col-md-3">
+	<div class="panel panel-primary">
+				<div class="panel-heading">Nouvelle Marque</div>
+				<div class="panel-body">
+		<form th:action="@{/admin/saveMarq}" method="post" >
+		<div class="form-group">
+				<label class="control-label" for="idMarq" >ID:</label> 
+				<label th:text="${marque.idMarq}"></label>
+				<input
+					class="form-label" type="hidden" name="idMarq" 
+					th:value="${marque.idMarq}">
+			</div>
+			<div class="form-group">
+				<label th:for="nomMarq">Nom de la marque:</label> <input
+					class="form-control" type="text" name="nomMarq" 
+					th:value="${marque.nomMarq}">
+					<span th:errors="${marque.nomMarq}" class="text-danger"> </span>
+			</div>
+			<button type="submit" class="btn btn-primary">save</button>
+		</form> 
+		</div>
+	</div></div>
+	</div>
+</body>
+</html>

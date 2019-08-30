@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="layout">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../static/css/bootstrap.min.css"
+	th:href="@{/css/bootstrap.min.css}">
+<title>Insert title here</title>
+</head>
+<body>
+	<div>
+		<div class="container">
+			<div class="col-md-4">
+				<div class="panel panel-primary">
+					<div class="panel-heading">Catégories</div>
+					<div class="panel-body ">
+						<ul class="list-group">
+							<li class="list-group-item" th:each="p:${listCategories}">
+								<a th:href="@{/user/search(id=${p.idCat})}" th:text="${p.nomCat}"></a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="panel panel-primary">
+					<div class="panel-heading">Marques</div>
+					<div class="panel-body ">
+						<ul class="list-group">
+							<li class="list-group-item" th:each="p:${listMarques}">
+								<a th:href="@{/user/searchM(id=${p.idMarq})}" th:text="${p.nomMarq}"></a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+<div class="container">
+<div class="col-md-2">
+</div>
+			<div class="col-md-4">
+				<div class="panel panel-primary">
+					<div class="panel-heading">Services</div>
+					<div class="panel-body ">
+						<ul class="list-group">
+							<li class="list-group-item" th:each="p:${listSr}">
+								<a th:href="@{/searchS(id=${p.id})}" th:text="${p.nomSer}"></a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="panel panel-primary">
+					<div class="panel-heading">Etat</div>
+					<div class="panel-body ">
+						<ul class="list-group">
+							<li class="list-group-item" th:each="p:${listEtat}">
+								<a th:href="@{/user/searchE(id=${p.idE})}" th:text="${p.nomE}"></a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			</div>
+</body>
+</html>

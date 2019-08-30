@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="layout">
+<head>
+<meta charset="utf-8">
+<title>saisie d'un état</title>
+</head>
+<body>
+	<div >
+	<div class="col-md-4"></div>
+	<div class="col-md-3">
+	<div class="panel panel-primary">
+				<div class="panel-heading">Nouveau état</div>
+				<div class="panel-body">
+		<form th:action="@{/admin/saveEtat}" method="post" th:object="${etat}">
+			<div class="form-group">
+				<label th:for="nomE">Nom d'état:</label> <input
+					class="form-control" type="text" name="nomE" 
+					th:value="${etat.nomE}">
+					<span th:errors="${etat.nomE}" class="text-danger"> </span>
+			</div>
+			<button type="submit" class="btn btn-primary">save</button>
+		</form> 
+		
+		</div>
+	</div></div>
+	</div>
+</body>
+</html>

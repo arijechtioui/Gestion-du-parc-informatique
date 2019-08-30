@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorate="layout">
+<head>
+<meta charset="UTF-8">
+<title>ICF Informatique</title>
+
+</head>
+<body>
+<div >
+	<div class="container">
+		<div class="panel panel-primary">
+			<div class="panel-heading">Liste des Services</div>
+			<div class="panel-body col-md-6">
+					<form th:action="@{/user/service}" method="get">
+						<label> Mots clé :</label>
+						 <input type="text" name="motCle" th:value='${motCle}'>
+						<button type="submit" class="btn btn-primary"> <span class="glyphicon glyphicon-search"></span>Chercher</button>
+					</form>
+					</div>
+				<div class="col-md-4">
+				<br>
+   			<a th:href="@{/admin/formSer}"><button type="button" class="btn btn-info">
+   			<span class="glyphicon glyphicon-plus"></span><b>Ajouter un service</b></button></a>
+   			</div>
+				
+			<div class="panel-body">
+				<table class="table">
+					<tr>
+						<th>ID</th>
+						<th>Service</th>
+						<th colspan="2"><center><b>Actions</b></center> </th>
+					<tr th:each="p:${services}">
+						<td th:text="${p.id}"></td>
+						<td th:text="${p.nomSer}"></td>
+						<td><a class="btn btn-danger"
+								onclick="return confirm('etes-vous sure ?')"
+								th:href="@{/admin/deleteSer(id=${p.id})}">
+								<span class="glyphicon glyphicon-trash"></span>Supprimer
+							</a></td>
+							<td><a class="btn btn-primary"
+								th:href="@{/admin/editSer(id=${p.id})}"><span class="glyphicon glyphicon-edit"></span>Modifier
+							</a></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

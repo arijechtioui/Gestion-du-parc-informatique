@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorate="layout">
+<head>
+<meta charset="UTF-8">
+<title>ICF Informatique</title>
+
+</head>
+<body>
+<div >
+	<div class="container">
+		<div class="panel panel-primary">
+			<div class="panel-heading">Liste des Equipements</div>
+			<div class="panel-body col-md-6">
+					<form th:action="@{/user/index}" method="get">
+						<label> Mots clé :</label>
+						 <input type="text" name="motCle" th:value='${motCle}'>
+						<button type="submit" class="btn btn-primary"> <span class="glyphicon glyphicon-search"></span>Chercher</button>
+					</form>
+					</div>
+				<div class="col-md-4">
+				<br>
+   			<a th:href="@{/admin/formProduit}"><button type="button" class="btn btn-info">
+   			<span class="glyphicon glyphicon-plus"></span><b>Ajouter un équipement</b></button></a>
+   			</div>
+				
+			<div class="panel-body">
+				<table class="table">
+					<tr>
+						<th>ID</th>
+						<th>N° de série</th>
+						<th>Modèle</th>
+						<th>Marque</th>
+						<th>Catégorie</th>
+						<th>Utilisateur</th>
+						<th>Observation</th>
+						<th>Date</th>
+						<th>Etat</th>
+						<th colspan="2"><center><b>Actions</b></center> </th>
+					<tr th:each="p:${listProducts}">
+						<td th:text="${p.idProduit}"></td>
+						<td th:text="${p.numSerie}"></td>
+						<td th:text="${p.modele}"></td>
+						<td th:each="m:${p.marque}" th:text="${m.nomMarq}"></td>
+						<td th:each="m:${p.categorie}" th:text="${m.nomCat}"></td>
+						<td th:each="m:${p.employe}" th:text="${m.nom}"></td>
+						<td th:text="${p.observation}"></td>
+						<td th:text="${p.dateCreation}"></td>
+						<td th:each="m:${p.etat}" th:text="${m.nomE}"></td>
+						<td><a class="btn btn-danger"
+								onclick="return confirm('etes-vous sure ?')"
+								th:href="@{/admin/delete(id=${p.idProduit},page=${currentPage}, motCle=${motCle})}">
+								<span class="glyphicon glyphicon-trash"></span>Supprimer
+							</a></td>
+							<td><a class="btn btn-primary"
+								th:href="@{/admin/edit(id=${p.idProduit})}"><span class="glyphicon glyphicon-edit"></span>Modifier
+							</a></td>
+					</tr>
+				</table>
+				<ul class="nav nav-pills">
+						<li th:class="${currentPage==status.index}?active:''"
+							th:each="page,status:${pages}"><a
+							th:href="@{/user/index(page=${status.index},motCle=${motCle})}"
+							th:text="${status.index}"> </a></li>
+					</ul>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

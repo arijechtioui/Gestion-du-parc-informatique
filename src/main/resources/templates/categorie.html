@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorate="layout">
+<head>
+<meta charset="UTF-8">
+<title>ICF Informatique</title>
+
+</head>
+<body>
+	<div >
+<div class="col-md-3"></div>
+<div class="col-md-6">
+		<div class="panel panel-primary">
+			<div class="panel-heading">Liste des états</div>
+			<div class="col-md-4">
+	</div>
+					<div class="col-md-4"></div>
+					<div class="col-md-4">
+				<br>
+   			<a th:href="@{/admin/formCat}"><button type="button" class="btn btn-info">
+   			<span class="glyphicon glyphicon-plus"></span><b>Ajouter categorie</b></button></a>
+   			</div>
+				
+			<div class="panel-body">
+				<table class="table">
+					<tr>
+						<th>ID</th>
+						<th>Categorie</th>
+						<th colspan="2"><center><b>Actions</b></center> </th>
+					<tr th:each="p:${categories}">
+						<td th:text="${p.idCat}"></td>
+						<td th:text="${p.nomCat}"></td>
+						<td><a class="btn btn-danger"
+								onclick="return confirm('etes-vous sure ?')"
+								th:href="@{/admin/deleteCat(id=${p.idCat})}">
+								<span class="glyphicon glyphicon-trash"></span>Supprimer
+							</a></td>
+							<td><a class="btn btn-primary"
+								th:href="@{/admin/editCat(id=${p.idCat})}"><span class="glyphicon glyphicon-edit"></span>Modifier
+							</a></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div></div>
+</body>
+</html>

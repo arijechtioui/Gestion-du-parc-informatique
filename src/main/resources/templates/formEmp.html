@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="layout">
+<head>
+<meta charset="utf-8">
+<title>saisie d'un équipement</title>
+</head>
+<body>
+	<div >
+	<div class="col-md-6">
+	<div class="panel panel-primary">
+				<div class="panel-heading">Nouveau employe</div>
+				<div class="panel-body">
+		<form th:action="@{/admin/saveEmp}" method="post" th:object="${employe}" >
+			<div class="form-group">
+				<label th:for="nom">Nom:</label> <input
+					class="form-control" type="text" name="nom" 
+					th:value="${employe.nom}">
+					<span th:errors="${employe.nom}" class="text-danger"> </span>
+			</div>
+			<div class="form-group">
+				<label th:for="prenom" >Prénom:</label> <input class="form-control"
+					type="text" name="prenom" th:value="${employe.nom}">
+					<span th:errors="${employe.nom}" class="text-danger"> </span>
+			</div>
+			<div class="form-group">
+				<label th:for="cin" >N° de CIN:</label> <input class="form-control"
+					type="text" name="cin" th:value="${employe.nom}">
+					<span th:errors="${employe.cin}" class="text-danger"> </span>
+			</div>
+			<div class="form-group">
+				<label th:for="tel" >N° de téléphone:</label> <input class="form-control"
+					type="text" name="tel" th:value="${employe.tel}">
+					<span th:errors="${employe.tel}" class="text-danger"> </span>
+			</div>
+			<div class="form-group">
+				<label class="control-label">Service:</label> 
+				<select th:field="*{serviceEmp}">
+				<option th:each="m:${listServices}"
+				 th:text="${m.nomSer}" th:value="${m.id}" ></option>
+				</select>
+			</div>		
+			<!-- <div class="form-group">
+				<label class="control-label">Etat:</label>
+				<select th:field="*{etat}">
+				<option th:each="m:${listEtat}"
+				 th:text="${m.nomE}" th:value="${m.idE}" ></option>
+				</select> 
+			</div> -->
+			<button type="submit" class="btn btn-primary">save</button>
+		</form> 
+		
+		</div>
+	</div></div>
+	</div>
+</body>
+</html>

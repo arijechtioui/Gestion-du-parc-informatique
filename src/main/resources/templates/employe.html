@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorate="layout">
+<head>
+<meta charset="UTF-8">
+<title>ICF Informatique</title>
+
+</head>
+<body>
+<div >
+	<div class="container">
+		<div class="panel panel-primary">
+			<div class="panel-heading">Liste des Employes</div>
+			<div class="panel-body col-md-6">
+					<form th:action="@{/user/employe}" method="get">
+						<label> Mots clé :</label>
+						 <input type="text" name="motCle" th:value='${motCle}'>
+						<button type="submit" class="btn btn-primary"> <span class="glyphicon glyphicon-search"></span>Chercher</button>
+					</form>
+					</div>
+				<div class="col-md-4">
+				<br>
+   			<a th:href="@{/admin/formEmp}"><button type="button" class="btn btn-info">
+   			<span class="glyphicon glyphicon-plus"></span><b>Ajouter un employé</b></button></a>
+   			</div>
+				
+			<div class="panel-body">
+				<table class="table">
+					<tr>
+						<th>ID</th>
+						<th>Nom</th>
+						<th>Prénom</th>
+						<th>N° de CIN</th>
+						<th>N° de téléphone</th>
+						
+						
+						<!--<th>Equipement propriétaire</th> <th>Bureau</th> -->
+						<th>Service</th>
+						<th colspan="2"><center><b>Actions</b></center> </th>
+					<tr th:each="p:${listProducts}">
+						<td th:text="${p.idEmp}"></td>
+						<td th:text="${p.nom}"></td>
+						<td th:text="${p.prenom}"></td>
+						<td th:text="${p.cin}"></td>
+						<td th:text="${p.tel}"></td>
+						<!-- <td th:each="m:${p.produits}" th:text="${m.produits}"></td> -->
+						
+						<td th:each="m:${p.serviceEmp}" th:text="${m.nomSer}"></td>
+						<td><a class="btn btn-danger"
+								onclick="return confirm('etes-vous sure ?')"
+								th:href="@{/admin/deleteEmp(id=${p.idEmp},page=${currentPage}, motCle=${motCle})}">
+								<span class="glyphicon glyphicon-trash"></span>Supprimer
+							</a></td>
+							<td><a class="btn btn-primary"
+								th:href="@{/admin/editEmp(id=${p.idEmp})}"><span class="glyphicon glyphicon-edit"></span>Modifier
+							</a></td>
+					</tr>
+				</table>
+				<ul class="nav nav-pills">
+						<li th:class="${currentPage==status.index}?active:''"
+							th:each="page,status:${pages}"><a
+							th:href="@{/user/index(page=${status.index},motCle=${motCle})}"
+							th:text="${status.index}"> </a></li>
+					</ul>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>
